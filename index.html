@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>apollo's Coding Journey</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Orbitron:wght@400;700&display=swap');
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background-color: #1a1a2e;
+  color: #e9e9e9;
+  overflow-x: hidden;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%232d2d42' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  perspective: 1000px;
+}
+
+h1, h2, h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: #4cc9f0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Header styles */
+header {
+  background-color: rgba(26, 26, 46, 0.8);
+  padding: 25px;
+  border-radius: 5px;
+  margin-bottom: 40px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  position: relative;
+  backdrop-filter: blur(5px);
+  border: 2px solid #4361ee;
+  border-bottom: 4px solid #4361ee;
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(5deg);
+  transition: transform 0.5s ease;
+}
+
+header:hover {
+  transform: perspective(1000px) rotateX(0deg) scale(1.02);
+}
+
+header h1 {
+  font-size: 3em;
+  margin-bottom: 15px;
+  background: linear-gradient(45deg, #4361ee, #4cc9f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 10px rgba(76, 201, 240, 0.3);
+}
+
+header p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: #f0f0f0;
+}
+
+.floating {
+  animation: techFloat 4s ease-in-out infinite;
+}
+
+@keyframes techFloat {
+  0% { transform: translate(0, 0px) rotate(0deg); }
+  25% { transform: translate(5px, -15px) rotate(2deg); }
+  50% { transform: translate(0, 0px) rotate(0deg); }
+  75% { transform: translate(-5px, -15px) rotate(-2deg); }
+  100% { transform: translate(0, 0px) rotate(0deg); }
+}
+
+.music-logo {
+  position: fixed;
+  top: 20px;          /* Changed from bottom: 20px */
+  right: 20px;        /* Changed from left: 20px */
+  width: 60px;
+  height: 60px;
+  z-index: 100;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.3s;
+}
+
+.music-logo:hover {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.robot-head {
+  width: 40px;
+  height: 35px;
+  background: linear-gradient(145deg, #4361ee, #4cc9f0);
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(67, 97, 238, 0.5);
+  transform-style: preserve-3d;
+  transform: translateZ(5px);
+}
+
+.robot-eye {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: white;
+  border-radius: 50%;
+  top: 8px;
+  animation: robotBlink 3s infinite;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes robotBlink {
+  0%, 45%, 50%, 100% { height: 8px; }
+  46%, 49% { height: 1px; }
+}
+
+.robot-eye.left {
+  left: 8px;
+}
+
+.robot-eye.right {
+  right: 8px;
+}
+
+.robot-ear {
+  position: absolute;
+  width: 10px;
+  height: 15px;
+  background-color: #4361ee;
+  top: 10px;
+  border-radius: 5px;
+}
+
+.robot-ear.left {
+  left: -5px;
+  transform: translateZ(-2px);
+}
+
+.robot-ear.right {
+  right: -5px;
+  transform: translateZ(-2px);
+}
+
+.robot-mouth {
+  position: absolute;
+  width: 20px;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+  bottom: 8px;
+  left: 10px;
+}
+
+.robot-antenna {
+  position: absolute;
+  width: 4px;
+  height: 10px;
+  background-color: #4361ee;
+  top: -10px;
+  left: 18px;
+  border-radius: 2px;
+}
+
+.robot-antenna:after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f04ced, #4361ee);
+  top: -5px;
+  left: -2px;
+  animation: antennaGlow 2s infinite alternate;
+}
+
+@keyframes antennaGlow {
+  0% { box-shadow: 0 0 5px #f04ced; }
+  100% { box-shadow: 0 0 15px #f04ced; }
+}
+
+.music-waves {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.music-logo:hover .music-waves {
+  opacity: 1;
+}
+
+.wave {
+  position: absolute;
+  background-color: #f04ced;
+  width: 3px;
+  border-radius: 2px;
+  animation: waveMotion 1s infinite ease-in-out;
+}
+
+.wave:nth-child(1) {
+  height: 10px;
+  left: 0px;
+  animation-delay: 0s;
+}
+
+.wave:nth-child(2) {
+  height: 14px;
+  left: 6px;
+  animation-delay: 0.2s;
+}
+
+.wave:nth-child(3) {
+  height: 8px;
+  left: 12px;
+  animation-delay: 0.4s;
+}
+
+.wave:nth-child(4) {
+  height: 12px;
+  left: 18px;
+  animation-delay: 0.6s;
+}
+
+@keyframes waveMotion {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.6); }
+}
+/* Spotify Embed Player */
+.spotify-player {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  height: 380px;
+  z-index: 10;
+  display: none; /* Hidden by default */
+}
+/* Mascot */
+.mascot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 120px;
+  height: 120px;
+  z-index: 100;
+  transform-origin: bottom center;
+  animation: techBounce 3s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite alternate;
+}
+
+@keyframes techBounce {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+  100% { transform: translateY(-30px) rotate(-5deg); }
+}
+
+.mascot-body {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(145deg, #16213e, #1a1a2e);
+  border-radius: 15px;
+  position: relative;
+  margin: 0 auto;
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.4),
+    inset 0 2px 10px rgba(76, 201, 240, 0.3);
+  overflow: hidden;
+  border: 2px solid #4361ee;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.mascot:hover .mascot-body {
+  transform: rotateZ(10deg);
+}
+
+.mascot-face {
+  position: absolute;
+  top: 25px;
+  left: 15px;
+  width: 50px;
+  height: 30px;
+}
+
+.mascot-eye {
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  background-color: #4cc9f0;
+  border-radius: 2px;
+  top: 0;
+  box-shadow: 0 0 8px rgba(76, 201, 240, 0.8);
+  animation: techBlink 3s infinite;
+}
+
+@keyframes techBlink {
+  0%, 45%, 50%, 100% { height: 8px; }
+  46%, 49% { height: 1px; }
+}
+
+.mascot-eye.left {
+  left: 10px;
+}
+
+.mascot-eye.right {
+  right: 10px;
+}
+
+.mascot-blush {
+  position: absolute;
+  width: 15px;
+  height: 5px;
+  background-color: #f72585;
+  border-radius: 50%;
+  top: 15px;
+  opacity: 0.3;
+}
+
+.mascot-blush.left {
+  left: 5px;
+}
+
+.mascot-blush.right {
+  right: 5px;
+}
+
+.mascot-mouth {
+  position: absolute;
+  width: 20px;
+  height: 5px;
+  border-radius: 0 0 5px 5px;
+  border: 2px solid #4cc9f0;
+  border-top: none;
+  bottom: 0;
+  left: 15px;
+}
+
+.mascot-ears {
+  position: absolute;
+  top: -15px;
+  width: 100%;
+}
+
+.mascot-ear {
+  width: 20px;
+  height: 25px;
+  background-color: #16213e;
+  position: absolute;
+  border: 2px solid #4361ee;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.mascot-ear.left {
+  left: 10px;
+  transform: rotate(-20deg);
+}
+
+.mascot-ear.right {
+  right: 10px;
+  transform: rotate(20deg);
+}
+
+.mascot-glasses {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: 50px;
+  height: 15px;
+  border-radius: 5px;
+  border: 2px solid #4361ee;
+  background-color: rgba(67, 97, 238, 0.1);
+  box-shadow: 0 0 10px rgba(67, 97, 238, 0.3);
+}
+
+.mascot-speech {
+  position: absolute;
+  top: -70px;
+  right: -20px;
+  background-color: #121223;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: all 0.5s;
+  width: 150px;
+  border: 2px solid #4361ee;
+  transform: perspective(500px) rotateX(10deg);
+  color: #4cc9f0;
+}
+
+.mascot-speech:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 30px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #121223;
+}
+
+.mascot:hover .mascot-speech {
+  opacity: 1;
+  top: -80px;
+  transform: perspective(500px) rotateX(0deg);
+}
+
+/* Roadmap */
+.roadmap-container {
+  position: relative;
+  margin: 80px 0;
+  padding: 30px 20px;
+  background: rgba(26, 26, 46, 0.5);
+  border-radius: 5px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.roadmap-path {
+  position: relative;
+  height: 150px;
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0,10 Q 30,20 60,10 T 120,10' stroke='%234361ee' stroke-width='5' fill='none' stroke-dasharray='5,5' /%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 120px 20px;
+  margin: 50px 0;
+  animation: roadmapFlow 10s linear infinite;
+}
+
+@keyframes roadmapFlow {
+  0% { background-position: 0 0; }
+  100% { background-position: -240px 0; }
+}
+
+/* Technology cards */
+.tech-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 50px;
+  perspective: 2000px;
+}
+
+.tech-card {
+  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  width: 280px;
+  border-radius: 8px;
+  padding: 30px 25px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-left: 3px solid #4361ee;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateY(5deg);
+}
+
+.tech-card:hover {
+  transform: perspective(1000px) rotateY(0deg) translateY(-15px);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    inset 0 2px 0 rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #4cc9f0;
+}
+
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(76, 201, 240, 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+.tech-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, rgba(67, 97, 238, 0) 0%, rgba(67, 97, 238, 0.03) 50%, rgba(67, 97, 238, 0) 100%);
+  transform: rotate(45deg);
+  transition: all 0.5s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tech-card:hover::after {
+  top: -100%;
+  left: -100%;
+  transition: all 0.7s;
+}
+
+.tech-card h3 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 2;
+  color: #4cc9f0;
+  text-shadow: 0 0 10px rgba(76, 201, 240, 0.3);
+}
+
+.tech-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, #16213e, #1a1a2e);
+  border-radius: 50%;
+  font-size: 2.5em;
+  color: #4cc9f0;
+  position: relative;
+  z-index: 2;
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    inset 0 2px 5px rgba(76, 201, 240, 0.2);
+  transition: transform 0.5s;
+}
+
+.tech-card:hover .tech-icon {
+  transform: rotateY(360deg);
+}
+
+.tech-icon:before {
+  content: '';
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 2px dashed #4361ee;
+  animation: techSpin 20s linear infinite;
+}
+
+@keyframes techSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.tech-description {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #e9e9e9;
+  position: relative;
+  z-index: 2;
+}
+
+.tech-checklist {
+  list-style-type: none;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.tech-checklist li {
+  margin-bottom: 12px;
+  padding-left: 25px;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.tech-checklist li:hover {
+  transform: translateX(5px);
+}
+
+.tech-checklist li:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #4361ee;
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  transform: scale(1);
+  transition: transform 0.3s;
+}
+
+.tech-checklist li:hover:before {
+  transform: scale(1.5) rotate(90deg);
+  background-color: #4cc9f0;
+  box-shadow: 0 0 10px rgba(76, 201, 240, 0.8);
+}
+
+.tech-card .complete-button {
+  background: linear-gradient(45deg, #4361ee, #4cc9f0);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+}
+
+.tech-card .complete-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 25px rgba(67, 97, 238, 0.5);
+}
+
+.tech-card .complete-button:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: all 0.5s;
+}
+
+.tech-card .complete-button:active:before {
+  width: 400px;
+  height: 400px;
+  transform: scale(1);
+  opacity: 0;
+}
+
+.encouragement {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4361ee;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  opacity: 0;
+  transition: all 0.5s;
+  white-space: nowrap;
+  box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: bold;
+  transform-style: preserve-3d;
+  transform: translateX(-50%) perspective(500px) rotateX(15deg);
+}
+
+.encouragement:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #4361ee;
+}
+
+.tech-card:hover .encouragement {
+  top: -60px;
+  opacity: 1;
+  transform: translateX(-50%) perspective(500px) rotateX(0deg);
+}
+
+/* Badge section */
+.badge-container {
+  display: none;
+  text-align: center;
+  margin-top: 40px;
+  animation: techFadeIn 1s forwards;
+}
+
+@keyframes techFadeIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.8); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.badge {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateY(0deg);
+  transition: transform 1.5s;
+  animation: techBadgePulse 3s infinite alternate;
+}
+
+@keyframes techBadgePulse {
+  0% { transform: perspective(1000px) rotateY(0deg) scale(1); }
+  50% { transform: perspective(1000px) rotateY(180deg) scale(1.1); }
+  100% { transform: perspective(1000px) rotateY(360deg) scale(1); }
+}
+
+.badge-front, .badge-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  color: white;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.badge-front {
+  background: linear-gradient(45deg, #4361ee, #4cc9f0);
+  border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.badge-back {
+  background: linear-gradient(45deg, #4cc9f0, #4361ee);
+  transform: rotateY(180deg);
+  border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Confetti */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+  display: none;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #4cc9f0;
+  border-radius: 0;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* 3D Floating elements */
+.floating-element {
+  position: absolute;
+  z-index: -1;
+  animation: tech3DFloat 6s ease-in-out infinite alternate;
+  opacity: 0.6;
+  transform-style: preserve-3d;
+}
+
+@keyframes tech3DFloat {
+  0% { transform: translate3d(0, 0, 0) rotate3d(1, 1, 1, 0deg); }
+  50% { transform: translate3d(15px, 15px, 30px) rotate3d(1, 1, 1, 10deg); }
+  100% { transform: translate3d(-15px, 30px, -20px) rotate3d(1, 1, 1, -10deg); }
+}
+
+.star {
+  color: #4361ee;
+  font-size: 1.5em;
+  text-shadow: 0 0 10px rgba(67, 97, 238, 0.8);
+}
+.roadmap-link {
+  color: #4cc9f0;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 5px;
+  padding: 5px 10px;
+  border: 1px solid #4361ee;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.roadmap-link:hover {
+  background-color: rgba(67, 97, 238, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(76, 201, 240, 0.3);
+}
+    
+    .heart {
+      color: #ff85a1;
+      font-size: 1.5em;
+    }
+    
+    .cloud {
+      background-color: rgba(255, 255, 255, 0.8);
+      width: 100px;
+      height: 50px;
+      border-radius: 25px;
+    }
+    
+    .cloud:before,
+    .cloud:after {
+      content: '';
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+    }
+    
+    .cloud:before {
+      width: 50px;
+      height: 50px;
+      top: -20px;
+      left: 15px;
+    }
+    
+    .cloud:after {
+      width: 40px;
+      height: 40px;
+      top: -15px;
+      right: 15px;
+    }
+    
+    /* Audio controls */
+    .audio-controls {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 100;
+      background-color: white;
+      border-radius: 30px;
+      padding: 10px 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid #ffd6ec;
+    }
+    
+    .audio-controls button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5em;
+      color: #8165c7;
+      transition: transform 0.3s;
+    }
+    
+    .audio-controls button:hover {
+      transform: scale(1.2);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .tech-section {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .tech-card {
+        width: 100%;
+        max-width: 320px;
+      }
+      
+      header h1 {
+        font-size: 2em;
+      }
+      
+      .mascot {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .mascot-body {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .mascot-face {
+        transform: scale(0.8);
+        top: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="floating">Apollo's Coding Journey</h1>
+      <p>Let's nail this job and secure that residency ASAP! <span class="heart">♥</span></p>
+      <div class="floating-element star" style="top: 20px; left: 10%;">★</div>
+      <div class="floating-element heart" style="top: 60px; right: 15%;">♥</div>
+      <div class="floating-element cloud" style="bottom: -30px; right: 5%;"></div>
+    </header>
+    <!-- Embed Spotify Playlist (hidden by default) -->
+    <div class="spotify-player" id="spotify-player">
+      <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E8Q1Zs7959UmL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+
+    <!-- Music Icon to toggle Spotify Player -->
+<div class="music-logo" onclick="toggleSpotifyPlayer()">
+    <div class="robot-head">
+      <div class="robot-eye left"></div>
+      <div class="robot-eye right"></div>
+      <div class="robot-ear left"></div>
+      <div class="robot-ear right"></div>
+      <div class="robot-mouth"></div>
+      <div class="robot-antenna"></div>
+    </div>
+    <div class="music-waves">
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+    </div>
+  </div>
+    <div class="roadmap-container">
+        <h2>Your Learning Path <span class="heart">♥</span></h2>
+        <p>Follow this adorable trail to become a front-end developer!</p>
+        <p><a href="https://roadmap.sh/frontend" class="roadmap-link">Check the detailed roadmap</a></p>
+        <div class="roadmap-path"></div>
+      </div>
+
+    <div class="tech-section">
+      <!-- HTML Section -->
+      <div class="tech-card" id="html-card">
+        <div class="encouragement">You can do it! Believe in yourself! ✨</div>
+        <div class="tech-icon">
+          <span>&lt;/&gt;</span>
+        </div>
+        <h3>HTML</h3>
+        <p class="tech-description">HTML is like the skeleton of a website! It gives structure to all the content you see online. Let's learn the basics together!</p>
+        <ul class="tech-checklist">
+          <li>Learn about tags and elements</li>
+          <li>Create your first webpage</li>
+          <li>Add images and links</li>
+          <li>Build forms for user input</li>
+        </ul>
+        <button class="complete-button" onclick="completeSection('html')">I finished! 🎉</button>
+        <div class="badge-container" id="html-badge">
+          <div class="badge">
+            <div class="badge-front">❤️</div>
+            <div class="badge-back">HTML</div>
+          </div>
+          <p>HTML Hero Badge Unlocked!</p>
+          <p>So proud of uu 💖</p>
+        </div>
+      </div>
+
+      <!-- CSS Section -->
+      <div class="tech-card" id="css-card">
+        <div class="encouragement">You're doing amazing! Keep going! 💞</div>
+        <div class="tech-icon">
+          <span>{}</span>
+        </div>
+        <h3>CSS</h3>
+        <p class="tech-description">CSS is like decorating a cake! It makes everything look pretty with colors, fonts, and layouts. Make your website shine!</p>
+        <ul class="tech-checklist">
+          <li>Style text and backgrounds</li>
+          <li>Create layouts with flexbox</li>
+          <li>Add animations and transitions</li>
+          <li>Make your site responsive</li>
+        </ul>
+        <button class="complete-button" onclick="completeSection('css')">I finished! 🎊</button>
+        <div class="badge-container" id="css-badge">
+          <div class="badge">
+            <div class="badge-front">🎨</div>
+            <div class="badge-back">CSS</div>
+          </div>
+          <p>CSS Superstar Badge Unlocked!</p>
+          <p>Braaavo apollo </p>
+        </div>
+      </div>
+
+      <!-- JavaScript Section -->
+      <div class="tech-card" id="js-card">
+        <div class="encouragement">Cutie coder alert! You're amazing! 🚀</div>
+        <div class="tech-icon">
+          <span>JS</span>
+        </div>
+        <h3>JavaScript</h3>
+        <p class="tech-description">JavaScript brings your websites to life! It's what makes things interactive. Add buttons, effects, and even games!</p>
+        <ul class="tech-checklist">
+          <li>Understand variables and functions</li>
+          <li>Work with events and DOM</li>
+          <li>Make a to-do list app</li>
+          <li>Learn about conditions and loops</li>
+        </ul>
+        <button class="complete-button" onclick="completeSection('js')">I finished! 🎈</button>
+        <div class="badge-container" id="js-badge">
+          <div class="badge">
+            <div class="badge-front">⚡</div>
+            <div class="badge-back">JS</div>
+          </div>
+          <p>JavaScript Genius Badge Unlocked!</p>
+          <p>proud of u againn</p>
+        </div>
+      </div>
+
+      <!-- React Section -->
+      <div class="tech-card" id="react-card">
+        <div class="encouragement">You're coding magic! 🪄</div>
+        <div class="tech-icon">
+          <span>⚛️</span>
+        </div>
+        <h3>React</h3>
+        <p class="tech-description">React is like your magical toolkit! Build dynamic user interfaces with reusable components. It’s super fun!</p>
+        <ul class="tech-checklist">
+          <li>Learn components and props</li>
+          <li>Use state and events</li>
+          <li>Build a counter or a weather app</li>
+          <li>Explore useEffect and hooks</li>
+        </ul>
+        <button class="complete-button" onclick="completeSection('react')">I finished! 🌟</button>
+        <div class="badge-container" id="react-badge">
+          <div class="badge">
+            <div class="badge-front">🔵</div>
+            <div class="badge-back">React</div>
+          </div>
+          <p>React Master Badge Unlocked!</p>
+          <p>safi apply nowww 💫</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mascot cheering -->
+  <div class="mascot">
+    <div class="mascot-ears">
+      <div class="mascot-ear left"></div>
+      <div class="mascot-ear right"></div>
+    </div>
+    <div class="mascot-body">
+      <div class="mascot-face">
+        <div class="mascot-eye left"></div>
+        <div class="mascot-eye right"></div>
+        <div class="mascot-blush left"></div>
+        <div class="mascot-blush right"></div>
+        <div class="mascot-mouth"></div>
+        <div class="mascot-glasses"></div>
+      </div>
+    </div>
+    <div class="mascot-speech">You got this, sweet coder! </div>
+  </div>
+
+  
+
+  <script>
+      
+    function completeSection(id) {
+            const badge = document.getElementById(`${id}-badge`);
+            const button = document.querySelector(`#${id}-card .complete-button`);
+            
+            // Check if this section is already completed
+            const isCompleted = localStorage.getItem(`${id}-completed`) === 'true';
+            
+            if (isCompleted) {
+            // If completed, mark as incomplete
+            localStorage.removeItem(`${id}-completed`);
+            badge.style.display = 'none';
+            button.textContent = "I finished! 🎉";
+            
+            // Reset any transformations on all cards
+            const allCards = document.querySelectorAll('.tech-card');
+            allCards.forEach(card => {
+                card.style.transform = ""; // Remove any transform
+                card.style.transition = ""; // Remove any transition
+            });
+            
+            } else {
+            // If not completed, mark as completed
+            localStorage.setItem(`${id}-completed`, 'true');
+            badge.style.display = 'block';
+            button.textContent = "Mark as incomplete ↩️";
+            
+            // Reset any transformations on all cards
+            const allCards = document.querySelectorAll('.tech-card');
+            allCards.forEach(card => {
+                card.style.transform = ""; // Remove any transform
+                card.style.transition = ""; // Remove any transition
+            });
+
+        function createConfetti() {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.classList.add('confetti-container');
+            confettiContainer.style.display = 'block';
+            document.body.appendChild(confettiContainer);
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // Random position
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -20 + 'px';
+                
+                // Random size
+                const size = Math.random() * 10 + 5;
+                confetti.style.width = size + 'px';
+                confetti.style.height = size + 'px';
+                
+                // Random color
+                const colors = ['#4cc9f0', '#4361ee', '#f72585', '#7209b7', '#3a0ca3'];
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random rotation
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                // Random animation duration
+                const duration = Math.random() * 3 + 2;
+                confetti.style.animation = `confettiFall ${duration}s linear forwards`;
+                
+                confettiContainer.appendChild(confetti);
+            }
+    
+    // Create keyframe animation for confetti
+    const styleSheet = document.createElement('style');
+    styleSheet.innerText = `
+        @keyframes confettiFall {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(styleSheet);
+    
+    // Remove confetti container after animation
+    setTimeout(() => {
+        document.body.removeChild(confettiContainer);
+        document.head.removeChild(styleSheet);
+    }, 5000);
+}
+
+function loadCompletionState() {
+    const sections = ['html', 'css', 'js', 'react'];
+    
+    sections.forEach(id => {
+        const isCompleted = localStorage.getItem(`${id}-completed`) === 'true';
+        const badge = document.getElementById(`${id}-badge`);
+        const button = document.querySelector(`#${id}-card .complete-button`);
+        
+        if (isCompleted) {
+            badge.style.display = 'block';
+            button.textContent = "Mark as incomplete ↩️";
+        } else {
+            badge.style.display = 'none';
+            button.textContent = "I finished! 🎉";
+        }
+    });
+}
+
+// Add this function to the window.onload event
+window.onload = function() {
+    loadCompletionState();
+}
+
+// Toggle the visibility of the Spotify player when the music logo is clicked
+function toggleSpotifyPlayer() {
+    const player = document.getElementById('spotify-player');
+    if (player.style.display === 'none' || player.style.display === '') {
+        player.style.display = 'block'; // Show the player
+    } else {
+        player.style.display = 'none'; // Hide the player
+    }
+}
+  </script>
+</body>
+</html>
